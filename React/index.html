@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <title>React</title>
+</head>
+<body>
+    <h4>React App</h4>
+    <div id="app1"></div>
+    <div id="app2"></div>
+    <div id="app3"></div>
+    <div id="app4"></div>
+
+    <script>
+        // Generate the element(<p>This is a React Element</p>) dynamically and appended to the div(id=app1)
+        //React.createElement(elementName, list of attributes, text content);
+        const element1 = React.createElement("p", null, "This is a React Element");
+        ReactDOM.createRoot(document.getElementById("app1")).render(element1);
+
+        // Generate the element(<h4><p>This is a React Element</p></h4>) dynamically 
+        //                                                      and appended to the div(id=app2)
+
+        //const element2  = React.createElement("h4", null, "<p>This is a complex element</p>");
+        const element2  = React.createElement("h4", null, 
+                                        React.createElement("p", null, "This is a complex element"));
+        ReactDOM.createRoot(document.getElementById("app2")).render(element2);
+
+        
+
+    </script>
+</body>
+</html>

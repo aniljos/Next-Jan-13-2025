@@ -1,1 +1,5 @@
 Nextjs session 13th-Jan-2025
+
+Git Url: https://github.com/aniljos/Next-Jan-13-2025
+Babel cdn: https://cdnjs.com/libraries/babel-standalone/7.26.3
+
