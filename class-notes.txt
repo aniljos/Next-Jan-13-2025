@@ -67,6 +67,8 @@ state
 	- signature setXXX
 			-setXXX(updated value)
 			-setXXX(callback the return the new/updated value)
+	- state should be treated as immutable(read-only)
+		-create a copy, change the copy, update the state
 		
 Components in react
 	- functional components(prefferend)
@@ -100,7 +102,32 @@ Forms
 			component state (read/set)
 			
 	2. Uncontrolled input
-		
+	
+	
+async/await
+  1. Works with promise
+  2. Write async code that looks/behaves like sync code.
+  3. Avoid callback hell/chain
+  
+CSS
+	- class(preferred)
+	- style(inline)
+	
+Excercise: Complete the edit component page
+	1. Implement the onchange event for all input fields
+	2. Implement the save handler: 
+				save the data to the backend 
+					PUT http://localhost:9000/products/4
+				navigate back to products
+	3. Implement the cancel handler
+				navigate back to products
+				
+Session state
+	Browser: localStorage & sessionStorage
+    Memory of the application
+		React Context, Redux
+
+			
 
 			
 	
