@@ -10,7 +10,7 @@ export default function Home() {
       <Message text="Hello Nextjs" color="blue"/> */}
 
       <Counter initialValue={5}/>
-      <Counter initialValue={10}/>
+      {/* <Counter initialValue={10}/> */}
 
     </div>
   );

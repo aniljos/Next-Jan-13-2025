@@ -1,6 +1,7 @@
 'use client'
 
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import Message from './Message';
 
 type CounterProps = {
     initialValue: number
@@ -8,7 +9,15 @@ type CounterProps = {
 
 function Counter(props: CounterProps){
 
+   
+
     const [counter, setCounter] = useState(props.initialValue);
+
+    useEffect(() => {
+
+        console.log("Counter updated", counter);
+
+    }, [counter])
     
     function inc(){
         console.log("in inc...");
@@ -16,8 +25,8 @@ function Counter(props: CounterProps){
         //setCounter(counter + 1);
 
         setCounter(prevCounter => prevCounter + 1);
-        setCounter(prevCounter => prevCounter + 1);
-        console.log("counter", counter);
+        //setCounter(prevCounter => prevCounter + 1);
+        //console.log("counter", counter);
     }
 
     function decr() {
@@ -32,8 +41,11 @@ function Counter(props: CounterProps){
                 <button onClick={inc}>Inc</button>&nbsp;
                 <button onClick={decr}>Decr</button>
             </div>
+            {/* conditional rendering */}
+             
+            {counter > 5 ? <Message text={'' + counter} color='blue'/> : null}  
         </div>
     )
-}
+} 
 
 export default Counter;

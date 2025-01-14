@@ -1,5 +1,113 @@
 Nextjs session 13th-Jan-2025
 
 Git Url: https://github.com/aniljos/Next-Jan-13-2025
+REST API Mock: https://github.com/aniljos/REST-API-Mock
+
+Quiz Day 1: https://forms.gle/zqMmVxNTukXtscMz9
+
 Babel cdn: https://cdnjs.com/libraries/babel-standalone/7.26.3
+
+
+JSX
+
+1. Another way of writing Javascript
+2. JSX will have to be compiled(converter) to Javascript
+3. Compiler: babel compiler
+4. Simplifies the way to write the presentation logic
+
+Toolchain
+
+1. Single Page Application(SPA) or MPA
+2. Client-side rendering & Server-side rendering
+3. SEO support
+4. Latest React features(React 18/19)
+5. Full stack
+
+Nextjs project files
+
+1. package.json: npm configuration files	
+		dependencies, scripts
+2. node_modules folder
+	all dependencies are installed here
+3. tsconfig.json	
+		ts compiler configuration
+4. eslint.config.mjs
+		eslint
+5. next.config.ts
+		Nextjs configuration
+6.public folder
+	Any files directly accessable for the browser
+	images, icons, css
+7. src folder	
+	source code
+	optional folder
+8. app folder
+	Folder for the App Router
+		layout.tsx: Application layout
+			html, body, header
+		page.tsx
+			page/view displayed on the default route(http://localhost:3001/)
+		about/page.tsx
+			page/view displayed on the about route(http://localhost:3001/about)
+			
+props
+	- They are always read-only(immutable) in the child component
+	
+state
+    - state changes trigger a re-render
+	- state changes are async 
+	- state changes are batched(React 18)
+		counter = 5
+		setCounter(counter + 1);  ==> setCounter(6);
+        setCounter(counter + 1);  ==> setCounter(6);
+		
+		setCounter(prevCounter => prevCounter + 1); ==> setCounter(invoke the callback) => 5
+        setCounter(prevCounter => prevCounter + 1); ==> setCounter(invoke the callback) => 6 
+		
+	- signature setXXX
+			-setXXX(updated value)
+			-setXXX(callback the return the new/updated value)
+		
+Components in react
+	- functional components(prefferend)
+	- class components (prefferend before react 16.8)
+	
+	
+	- client-side rendering(csr) 
+		- Initial version of react
+		- component function is invoked on the browser
+		- client intercations(handling events) on in client component
+	- server side rendering (ssr)- Server Components
+		- Introduced from React 18 & Next 13(App Router)
+		- component function is invoked on the server
+		
+useEffect
+	mount-  useEffect(() => {}, [])
+		1. Initializaton after the component is rendered.
+		2. API calls
+		3. DOM Initializations
+		4. Event handlers(window/document) register
+	unmount:
+		1. Clean-up
+		2. Unregister the event handlers
+		3. Cancel API calls
+	update
+		1. API calls or any other logic
+		
+Forms
+	1. Controlled input(Recommended)
+			Reactive
+			component state (read/set)
+			
+	2. Uncontrolled input
+		
+
+			
+	
+	
+	
+
+	
+
+
 
