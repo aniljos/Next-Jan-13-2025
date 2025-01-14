@@ -1,11 +1,15 @@
 'use client'
 
+import axios from 'axios';
 import { ChangeEvent, useState } from "react"
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage(){
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
+    const router = useRouter();
 
     function handleUsernameChange(evt: ChangeEvent<HTMLInputElement>){
 
@@ -13,10 +17,55 @@ export default function LoginPage(){
         setUsername(value);
     }
 
+    async function login(){
+
+        if(!username || !password){
+            setMessage("Enter the credentials!");
+        }
+        else{
+
+            //validate the credentials
+
+            const url = "http://localhost:9000/login"
+            // axios
+            //     .post(url, {name: username, password})
+            //     .then((response) => {
+            //         console.log("fullfilled", response)
+            //     }) //fullfilled
+            //     .catch((error) => {
+            //         console.log("rejected", error)
+            //     }) //rejected
+            //     .finally(() => {
+            //         console.log("in finally");
+            //     })
+
+            try {
+                
+                const response = await axios.post(url, {name: username, password});
+                //fullfilled
+                console.log("fullfilled", response)
+                setMessage("");
+                router.push("/");
+
+            } catch (error) {
+                //rejected
+                console.log("rejected", error)
+                setMessage("Invalid Credentials");
+            }
+            finally{
+                console.log("in finally");
+            }
+
+           
+        }
+    }
+
     return (
         <div>
             <h4>Login</h4>
             <p>Login to your Next.js application.</p>
+
+            {message ? <div className="alert alert-warning">{message}</div>: null}
 
             <div className="form-group">
                 <label htmlFor="userName">User Name</label>
@@ -30,7 +79,7 @@ export default function LoginPage(){
             </div>
 
             <br />
-            <button className="btn btn-success">Login</button>
+            <button className="btn btn-success" onClick={login}>Login</button>
 
         </div>
     )
