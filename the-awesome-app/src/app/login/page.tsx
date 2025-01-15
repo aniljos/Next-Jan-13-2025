@@ -1,7 +1,7 @@
 'use client'
 
 import axios from 'axios';
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 
@@ -12,6 +12,11 @@ export default function LoginPage() {
     const [message, setMessage] = useState("");
     const router = useRouter();
     const dispatch = useDispatch();
+    const userNameInputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        userNameInputRef.current?.focus();
+    }, [])
 
     function handleUsernameChange(evt: ChangeEvent<HTMLInputElement>) {
 
@@ -20,6 +25,8 @@ export default function LoginPage() {
     }
 
     async function login() {
+
+        console.log("username from useRef", userNameInputRef.current?.value);
 
         if (!username || !password) {
             setMessage("Enter the credentials!");
@@ -84,7 +91,8 @@ export default function LoginPage() {
 
             <div className="form-group">
                 <label htmlFor="userName">User Name</label>
-                <input className="form-control" type="text" id="userName" value={username} onChange={handleUsernameChange} />
+                <input className="form-control" type="text" id="userName" 
+                        value={username} onChange={handleUsernameChange} ref={userNameInputRef}/>
             </div>
 
             <div className="form-group">

@@ -2,7 +2,7 @@
 
 import { CartItem } from '@/model/CartItem';
 import { Product } from '@/model/product';
-//import { addItemToCart } from '@/redux/gadgetsReducer';
+import { addItemToCart } from '@/redux/gadgetsReducer';
 import { AppDispatch } from '@/redux/store';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -35,10 +35,10 @@ function GadgetStore(){
    
     function addToCart(product: Product): void {
         
-        dispatch({type: "addToCart", payload: new CartItem(product, 1)});
+        //dispatch({type: "addToCart", payload: new CartItem(product, 1)});
 
-        //const action = addItemToCart(new CartItem(product, 1));
-        //dispatch(action);
+        const action = addItemToCart(new CartItem(product, 1));
+        dispatch(action);
     }
 
     function renderProducts() {

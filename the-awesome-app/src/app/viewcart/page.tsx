@@ -1,6 +1,6 @@
 'use client'
 import { CartItem } from "@/model/CartItem";
-//import { removeItemFormCart } from "@/redux/gadgetsReducer";
+import { removeItemFormCart } from "@/redux/gadgetsReducer";
 import { AppDispatch, AppState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,8 +12,8 @@ function ViewCart(){
     function remove(item: CartItem) {
 
         if(item.product.id){
-            dispatch({type:"removeItem", id: item.product.id})
-            //dispatch(removeItemFormCart(item.product.id));
+            //dispatch({type:"removeItem", id: item.product.id})
+            dispatch(removeItemFormCart(item.product.id));
         }
        
     }
