@@ -5,8 +5,11 @@ import axios from "axios"
 import { useEffect, useState } from "react";
 import classes from './products.module.css';
 import { useRouter } from "next/navigation";
+import {useSelector} from 'react-redux'
+import { AppState } from "@/redux/store";
 
-const url = "http://localhost:9000/products";
+//const url = "http://localhost:9000/products";
+const url = "http://localhost:9000/secure_products";
 
 export default function ListProductsPage(){
 
@@ -17,14 +20,22 @@ export default function ListProductsPage(){
 
         fetchProducts();
 
-    }, [])
+    }, []);
+    const auth = useSelector((state: AppState) =>  state.auth)
+
 
 
     async function fetchProducts(){
 
         try {
+
+            if(!auth.isAuthenticated){
+                router.push("/login");
+                return;
+            }
             
-            const response = await axios.get<Product[]>(url);
+            const headers = {"Authorization": `Bearer ${auth.accessToken}`};
+            const response = await axios.get<Product[]>(url, {headers});
             console.log("fetchProducts", response.data);
             setProducts(response.data);
 
@@ -38,8 +49,9 @@ export default function ListProductsPage(){
 
         try {
             
+            const headers = {"Authorization": `Bearer ${auth.accessToken}`};
             const deleteUrl = url + "/" + product.id;
-            await axios.delete(deleteUrl);
+            await axios.delete(deleteUrl, {headers});
             //await fetchProducts()
 
            //deep copy of products(state)

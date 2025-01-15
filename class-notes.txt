@@ -54,6 +54,12 @@ Nextjs project files
 props
 	- They are always read-only(immutable) in the child component
 	
+	<Counter initialValue={3}/>  initialValue => props.initialValue
+	
+	<ReduxProvider>
+		<div>....</div>   <div>....</div> => props.children
+	</ReduxProvider>
+	
 state
     - state changes trigger a re-render
 	- state changes are async 
@@ -127,11 +133,49 @@ Session state
 	Browser: localStorage & sessionStorage
     Memory of the application
 		React Context, Redux
+		
+Redux
 
-			
-
-			
+	- redux
+	- react-redux
+	- @reduxjs/toolkit
 	
+	-npm install @reduxjs/toolkit react-redux
+
+1. Action is an object: 
+		property called "type" => type of operation to be executed
+		other properties(if required)
+		
+		{type: "update_token", token: "1234"}
+		{type: "clear_token"}
+2. Reducer is a function:
+		Receive the action
+		Based on the type of actions => updates the store
+		Every store will have only one reducers
+			-use a pattern to write mutiple reducers and combine to a single reducer
+			
+3. Middleware(s)
+		Intercepts the action before its handled by the reducer	
+			--logging, validations,
+			-- async operation(API call)
+			
+			-- Middleware Library for async operation
+					-Redux thunk, Redux saga
+4. Redux ToolKit
+		- Action creators: helper functions that creates actions
+		- Slices: simplifies the reducer logic
+					(work with state in as mutable)
+		
+		
+
+			
+
+			
+react-redux: library for integration
+	-Provider component: integrates the store to the application	
+	- useDispatch hook: return the dispatch method
+	- useSelector hook: return the state(select)
+	- useStore hook: return the store
 	
 	
 
