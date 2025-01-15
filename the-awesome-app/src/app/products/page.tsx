@@ -2,51 +2,30 @@
 
 import { Product } from "@/model/product";
 import axios from "axios"
-import { useEffect, useState } from "react";
-import classes from './products.module.css';
-import { useRouter } from "next/navigation";
-import {useSelector} from 'react-redux'
-import { AppState } from "@/redux/store";
+
+
+
+import { useTitle } from "@/hooks/useTitle";
+import { useProducts } from "@/hooks/useProducts";
+import ProductView from "./ProductView";
+import { useCallback, useMemo, useState } from "react";
 
 //const url = "http://localhost:9000/products";
 const url = "http://localhost:9000/secure_products";
 
 export default function ListProductsPage(){
 
+    console.log("rendering ListProducts...");
+    
 
-    const [products, setProducts] = useState<Product[]>([]);
-    const router = useRouter();
-    useEffect(() => {
+    const {products, setProducts, auth, router} = useProducts(url);    
+    const [isMessageVisible, setMessageVisible] = useState(false);
 
-        fetchProducts();
+    useTitle("Products");
 
-    }, []);
-    const auth = useSelector((state: AppState) =>  state.auth)
+    const deleteProduct = useCallback(async (product: Product)=>{
 
-
-
-    async function fetchProducts(){
-
-        try {
-
-            if(!auth.isAuthenticated){
-                router.push("/login");
-                return;
-            }
-            
-            const headers = {"Authorization": `Bearer ${auth.accessToken}`};
-            const response = await axios.get<Product[]>(url, {headers});
-            console.log("fetchProducts", response.data);
-            setProducts(response.data);
-
-        } catch (error) {
-            console.log("fetchProducts", error);
-
-        }
-    }
-
-    async function deleteProduct(product: Product){
-
+      
         try {
             
             const headers = {"Authorization": `Bearer ${auth.accessToken}`};
@@ -69,33 +48,54 @@ export default function ListProductsPage(){
             alert("Failed to delete product with id " + product.id);
         }
 
-    }
+    }, [products])
 
     // function test(evt: MouseEvent<HTMLButtonElement>){
     //     console.log(evt);
     // }
 
-    function editProduct(product: Product){
+    const editProduct = useCallback( (product: Product) =>{
         
         router.push("/products/" + product.id);
-    }
+
+    }, [])
+
+    // const calculatePrices = () => {
+
+    //     console.log("calculating prices..");
+    //     let prices = 0;
+    //     products.forEach(p => {
+    //         prices += p.price;
+    //     })
+    //     return prices;
+    // }
+
+    const totalPrice = useMemo( () => {
+
+        console.log("calculating prices..");
+        let prices = 0;
+        products.forEach(p => {
+            prices += p.price;
+        })
+        return prices;
+    }, [products])
 
     return (
         <div>
             <h4>List Products</h4>
+
+            <div>Prices: {totalPrice}</div>
+
+            {isMessageVisible ? <div className="alert alert-info">This is a react page using axios and useState</div>: null}
+
+            <div>
+                <button className="btn btn-primary" onClick={() => setMessageVisible(pValue => !pValue)}>Show/Hide</button>
+            </div>
+
             <div style={{display: 'flex', flexFlow: 'row wrap', justifyContent: 'center'}}>
                 {products.map(product  => {
                     return (
-                        <div className={classes.product} key={product.id}>
-                            <p>Id: {product.id}</p>
-                            <p>{product.name}</p>
-                            <p>{product.description}</p>
-                            <p>Price: {product.price}</p>
-
-                            <button className="btn btn-warning" onClick={() => {deleteProduct(product)}}>Delete</button>&nbsp;
-                            {/* <button className="btn btn-warning" onClick={test}>Delete</button>&nbsp; */}
-                            <button className="btn btn-primary" onClick={() => editProduct(product)}>Edit</button>
-                        </div>
+                        <ProductView key={product.id} data={product} onDelete={deleteProduct} onEdit={editProduct}/>
                     )
                 })}
             </div>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
+import { useTitle } from '@/hooks/useTitle';
 
 export default function LoginPage() {
 
@@ -13,6 +14,7 @@ export default function LoginPage() {
     const router = useRouter();
     const dispatch = useDispatch();
     const userNameInputRef = useRef<HTMLInputElement>(null);
+    useTitle("Login");
 
     useEffect(() => {
         userNameInputRef.current?.focus();
