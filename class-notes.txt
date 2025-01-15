@@ -4,6 +4,7 @@ Git Url: https://github.com/aniljos/Next-Jan-13-2025
 REST API Mock: https://github.com/aniljos/REST-API-Mock
 
 Quiz Day 1: https://forms.gle/zqMmVxNTukXtscMz9
+Quiz Day 2: https://forms.gle/76hXXRXiV17UBAnG9
 
 Babel cdn: https://cdnjs.com/libraries/babel-standalone/7.26.3
 
