@@ -1,5 +1,6 @@
 import { Supplier } from "@/model/supplier";
 import { SupplierSearch } from "./SupplierSearch";
+import Link from "next/link";
 
 export default async function SupplierPage() {
 
@@ -8,6 +9,7 @@ export default async function SupplierPage() {
     async function fetchSuppliers(query: string) {
         'use server'
 
+        //access db here 
         const url = "http://localhost:3001/api/suppliers?query=" + query;
         const response = await fetch(url);
         const suppliers = await response.json() as Supplier[];
@@ -44,6 +46,8 @@ export default async function SupplierPage() {
 
         <div>
             <h4>Suppliers</h4>
+
+            <Link href="/suppliers/add">Add Supplier</Link>
 
             <SupplierSearch fetchData={fetchSuppliers} />
 

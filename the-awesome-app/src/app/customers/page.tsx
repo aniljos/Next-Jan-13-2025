@@ -30,7 +30,7 @@ type CustomerViewProps = {
 }
 export async function CustomerView(props: CustomerViewProps) {
 
-    await new Promise(resolve => setTimeout(resolve, props.interval));
+   await new Promise(resolve => setTimeout(resolve, props.interval));
     const url = "http://localhost:9000/customers";
 
     //const response = await axios.get<Customer[]>(url);

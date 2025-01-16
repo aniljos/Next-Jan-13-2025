@@ -30,6 +30,7 @@ function Counter(props: CounterProps){
     }
 
     function decr() {
+        debugger;
         console.log("in decr...");
         setCounter(counter - 1);
     }

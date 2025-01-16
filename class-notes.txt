@@ -199,6 +199,7 @@ App Design and Performance
 		Higher order components(HOC) - class or functional components
 3.Optimization
 	React.memo: 
+		HOC
 		creates a memoized copy(cached) of the component. 
 		The memoized copy get invalidated if the state/props of the component changes(component is rerendered)
 	useCallback
