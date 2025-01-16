@@ -5,6 +5,7 @@ import "./globals.css";
 import ReduxProvider from "@/redux/ReduxProvider";
 import AppThemeContextProvider from "@/context/AppThemeContext";
 import AppBar from "@/components/AppBar";
+import GadgetsContextProvider from "@/context/GadgetsContext";
 
 
 const geistSans = Geist({
@@ -34,13 +35,14 @@ export default function RootLayout({
         <ReduxProvider>
           
           <AppThemeContextProvider>
+            <GadgetsContextProvider>
             <div className="container">
               <AppBar/>
               <main>
                 {children}
               </main>
             </div>
-
+            </GadgetsContextProvider>
             </AppThemeContextProvider>
          
         </ReduxProvider>

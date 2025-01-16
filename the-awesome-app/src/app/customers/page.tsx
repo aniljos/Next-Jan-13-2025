@@ -8,6 +8,8 @@ export default async function CustomerPage(){
     const response = await axios.get<Customer[]>(url);
     const customers = response.data;
 
+    
+
     return (
         <div>
             <h4>Customers</h4>

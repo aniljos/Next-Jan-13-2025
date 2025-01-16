@@ -38,6 +38,12 @@ export default function AppBar(){
               <Link className="nav-link" href="/viewcart">View Cart</Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link" href="/gadgets-context">Gadgets-Context</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" href="/viewcart-context">View Cart-Context</Link>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link" href="/customers">Customers</Link>
             </li>
             <li className="nav-item">
