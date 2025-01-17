@@ -206,6 +206,8 @@ App Design and Performance
 	useMemo
 	Virtual DOM
 	
+Tutorials: https://www.youtube.com/@DaveGrayTeachesCode
+	
 
 	
 
